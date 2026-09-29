@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracker — Taqdimot (Odatlar va Salomatlik OS) · 2026</title>
+  <meta name="description" content="Tracker: O'yinlashtirilgan Odatlar va Salomatlik OS. Investor va Akselerator Taqdimoti 2026 — Asadbek Orolov.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Geist Mono', 'ui-monospace', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { --em: #10b981; --em-light: #34d399; --teal: #14b8a6; --hh: 49px; --fh: 52px; }
+    *, html, body { box-sizing: border-box; }
+    html, body { height: 100dvh; width: 100%; overflow: hidden; background: #050811; color: #f1f5f9; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; user-select: none; }
+
+    body { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.09) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 85% 80%, rgba(20,184,166,0.06) 0%, transparent 60%), #050811; }
+
+    #progressBar { position: fixed; top: 0; left: 0; height: 2px; z-index: 100; background: linear-gradient(90deg, #10b981, #34d399, #14b8a6); transition: width 0.45s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 0 14px rgba(16,185,129,0.75); }
+
+    .slide { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(0.4rem, 1.2vh, 1rem) 1.5rem; opacity: 0; transform: scale(0.972) translateY(8px); transition: opacity 0.42s cubic-bezier(0.4,0,0.2,1), transform 0.42s cubic-bezier(0.4,0,0.2,1); pointer-events: none; will-change: opacity, transform; overflow: hidden; }
+    .slide.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+
+    .glass { background: rgba(15,23,42,0.65); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(51,65,85,0.55); }
+    .glass-em { background: rgba(15,23,42,0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(16,185,129,0.25); }
+    .glass-rose { background: rgba(15,23,42,0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(244,63,94,0.2); }
+
+    .grad-em { background: linear-gradient(135deg, #10b981, #14b8a6); }
+    .text-grad-em { background: linear-gradient(135deg, #34d399 0%, #10b981 40%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .ib { display: flex; align-items: center; justify-content: center; border-radius: 14px; flex-shrink: 0; }
+    .hl { transition: transform .2s ease, box-shadow .2s ease; }
+    .hl:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.32); }
+
+    .dot { transition: all .35s cubic-bezier(0.4,0,0.2,1); cursor: pointer; border-radius: 9999px; height: 6px; }
+    .dot.a { width: 28px; background: #34d399; box-shadow: 0 0 8px rgba(52,211,153,.6); }
+    .dot.i { width: 6px; background: rgba(100,116,139,.5); }
+    .dot.i:hover { background: rgba(100,116,139,.9); }
+
+    .tag { font-family: 'Geist Mono', monospace; font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+    .sl { font-family: 'Geist Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    .bar-fill { transition: width 1.2s cubic-bezier(0.4,0,0.2,1) .3s; }
+
+    .comp-table th { font-family: 'Geist Mono', monospace; font-size: .7rem; letter-spacing: .05em; }
+    .comp-table td { font-size: .8rem; }
+    .comp-table tr:hover td { background: rgba(16,185,129,.03); }
+
+    /* Screenshot & Mockup Styles */
+    .thumb-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(51, 65, 85, 0.55);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      background: #090d16;
+    }
+    .thumb-card:hover {
+      border-color: rgba(52, 211, 153, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.22);
+    }
+    .thumb-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(5, 8, 17, 0.94) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 6px 8px;
+      transition: background 0.2s ease;
+    }
+    .thumb-card:hover .overlay {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 8, 17, 0.96) 100%);
+    }
+
+    .phone-mockup {
+      position: relative;
+      border-radius: 32px;
+      padding: 7px;
+      background: linear-gradient(165deg, #334155 0%, #1e293b 50%, #0f172a 100%);
+      border: 2px solid rgba(71, 85, 105, 0.6);
+      box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 35px rgba(16,185,129,0.2);
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+    }
+    .phone-mockup:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(52, 211, 153, 0.7);
+      box-shadow: 0 30px 70px -10px rgba(0,0,0,0.95), 0 0 45px rgba(16,185,129,0.35);
+    }
+
+    ::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 768px) { .slide { padding: .75rem 1rem; } }
+  </style>
+</head>
+<body>
+
+  <div id="progressBar" style="width:10%"></div>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-2.5 border-b border-slate-800/60" style="background:rgba(5,8,17,.88);backdrop-filter:blur(24px);margin-top:2px;">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl overflow-hidden shadow-lg border border-emerald-500/40 shrink-0" style="box-shadow:0 4px 16px rgba(16,185,129,.35)">
+        <img src="Code_Generated_Image.png" alt="Tracker Logo" class="w-full h-full object-cover">
+      </div>
+      <div class="leading-none">
+        <div class="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+          <span>Tracker</span>
+          <span class="text-[10px] font-mono font-normal px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/25 text-emerald-400">2026</span>
+        </div>
+        <div class="text-[9px] font-mono text-emerald-400/70 tracking-widest uppercase mt-0.5">Odatlar va Salomatlik OS</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2.5">
+      <button onclick="openGallery(1)" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-mono transition-all" title="Barcha ilova ekranlarini ko'rish (G)">
+        <i data-lucide="images" class="w-3.5 h-3.5"></i>
+        <span>Ilova Ekranlari (13)</span>
+      </button>
+      <span id="slideTitle" class="hidden sm:inline text-xs text-slate-500 font-mono tracking-wide"></span>
+      <div class="font-mono text-xs text-slate-400 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full" id="slideCounter">01 / 10</div>
+      <button onclick="toggleFs()" class="p-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40 transition-all" title="To'liq ekran (F)">
+        <span id="fsMax"><i data-lucide="maximize-2" class="w-3.5 h-3.5"></i></span>
+        <span id="fsMin" style="display:none"><i data-lucide="minimize-2" class="w-3.5 h-3.5"></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SLIDES -->
+  <main class="fixed inset-0 overflow-hidden" style="top:var(--hh);bottom:var(--fh);">
+
+    <!-- ═══ SLIDE 1 · HERO ═══ -->
+    <section class="slide active" data-title="Vizyon va Missiya">
+      <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <!-- Chap ustun: Ma'lumotlar va qadriyat -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left gap-3.5">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border border-emerald-500/35 text-emerald-400 tag">
+            <img src="Code_Generated_Image.png" class="w-3.5 h-3.5 rounded-full" alt="Tracker Icon">
+            <span>Investor va Akselerator Taqdimoti · 2026</span>
+          </div>
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
+              Shaxsiy Intizom va<br>Salomatlikning
+              <span class="text-grad-em"> Raqamli<br>Ekotizimi</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base font-light leading-relaxed max-w-xl">
+              Odatlar, 24 soatlik kun tartibi va muhim salomatlik metrikalarini <span class="text-emerald-400/90 font-medium">o'yinlashtirilgan jamoa mas'uliyati</span> orqali birlashtiruvchi yagona Android ilova.
+            </p>
+          </div>
+
+          <!-- 4 asosiy metrika kartasi -->
+          <div class="grid grid-cols-2 gap-2.5 w-full max-w-xl pt-0.5">
+            <div class="flex items-center gap-2.5 glass px-3.5 py-2 rounded-2xl hl">
+              <div class="ib w-7 h-7 bg-emerald-500/15 border border-emerald-500/30 shrink-0"><i data-lucide="user-check" class="w-3.5 h-3.5 text-emerald-400"></i></div>
+              <div class="min-w-0"><div class="text-[9px] font-mono text-slate-500 leading-none mb-0.5">Asoschi va Bosh Dasturchi</div><div class="text-xs font-semibold text-white truncate">Asadbek Orolov</div></div>
+            </div>
+            <div class="flex items-center gap-2.5 glass px-3.5 py-2 rounded-2xl hl">
+              <div class="ib w-7 h-7 bg-blue-500/15 border border-blue-500/30 shrink-0"><i data-lucide="github" class="w-3.5 h-3.5 text-blue-400"></i></div>
+              <div class="min-w-0"><div class="text-[9px] font-mono text-slate-500 leading-none mb-0.5">GitHub Repozitoriya</div><div class="text-xs font-mono text-blue-400 truncate">Habbit_tracker</div></div>
+            </div>
+            <div class="flex items-center gap-2.5 glass px-3.5 py-2 rounded-2xl hl">
+              <div class="ib w-7 h-7 bg-violet-500/15 border border-violet-500/30 shrink-0"><i data-lucide="package-check" class="w-3.5 h-3.5 text-violet-400"></i></div>
+              <div class="min-w-0"><div class="text-[9px] font-mono text-slate-500 leading-none mb-0.5">Ishlab Chiqarish Build</div><div class="text-xs font-mono text-violet-400 truncate">TargetSdk 36 · ~8.28 MB</div></div>
+            </div>
+            <div class="flex items-center gap-2.5 glass px-3.5 py-2 rounded-2xl hl">
+              <div class="ib w-7 h-7 bg-teal-500/15 border border-teal-500/30 shrink-0"><i data-lucide="layers" class="w-3.5 h-3.5 text-teal-400"></i></div>
+              <div class="min-w-0"><div class="text-[9px] font-mono text-slate-500 leading-none mb-0.5">Soha</div><div class="text-xs font-semibold text-white truncate">SalomatlikTex · Mobil</div></div>
+            </div>
+          </div>
+
+          <!-- Stack teglari va amallar -->
+          <div class="flex flex-wrap items-center gap-2 pt-0.5">
+            <span class="tag px-2.5 py-1 rounded-lg glass text-slate-400">React 18</span>
+            <span class="tag px-2.5 py-1 rounded-lg glass text-slate-400">TypeScript</span>
+            <span class="tag px-2.5 py-1 rounded-lg glass text-slate-400">Capacitor 8</span>
+            <span class="tag px-2.5 py-1 rounded-lg glass text-slate-400">Supabase</span>
+            <span class="tag px-2.5 py-1 rounded-lg glass-em text-emerald-400/80">Health Connect</span>
+            <button onclick="openGallery(1)" class="tag px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-semibold cursor-pointer inline-flex items-center gap-1 transition-all">
+              <i data-lucide="eye" class="w-3 h-3"></i> Jonli Ekranlar (13)
+            </button>
+          </div>
+        </div>
+
+        <!-- O'ng ustun: Haqiqiy Telefon Mockup (Screenshot Home) -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <div class="relative cursor-pointer group" onclick="openGallery(1)" title="To'liq o'lchamda ko'rish uchun bosing">
+            <!-- Fon nurlanishi -->
+            <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-teal-500/20 to-blue-500/10 rounded-[38px] blur-2xl group-hover:opacity-100 transition-all opacity-70"></div>
+            
+            <!-- Telefon korpusi -->
+            <div class="relative w-[215px] sm:w-[235px] aspect-[9/19.5] rounded-[30px] p-2 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 border-2 border-slate-600/70 shadow-2xl shadow-emerald-950/50 group-hover:border-emerald-500/50 transition-all">
+              <!-- Dinamik orolcha / Kamera pilli -->
+              <div class="absolute top-3 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black/95 rounded-full z-20 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-slate-900 border border-slate-700"></div>
+              </div>
+              <!-- Haqiqiy skrinshot tasviri -->
+              <div class="w-full h-full rounded-[22px] overflow-hidden bg-black relative">
+                <img src="Screenshot_20260929_111151_Tracker.jpg" alt="Tracker Asosiy Ekran" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-3">
+                  <span class="text-[10px] font-mono font-medium text-emerald-300 bg-slate-950/90 border border-emerald-500/40 px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                    <i data-lucide="zoom-in" class="w-3 h-3"></i> Galereyada ochish
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Suzuvchi belgi 1 (Tepa o'ng) -->
+            <div class="absolute -top-2 -right-5 glass px-3 py-1.5 rounded-xl border border-emerald-500/35 flex items-center gap-1.5 shadow-xl">
+              <div class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
+              <span class="text-[10px] font-mono font-semibold text-emerald-300">Jonli Android MVP</span>
+            </div>
+
+            <!-- Suzuvchi belgi 2 (Past chap) -->
+            <div class="absolute -bottom-2 -left-5 glass px-3 py-1.5 rounded-xl border border-amber-500/35 flex items-center gap-1.5 shadow-xl">
+              <i data-lucide="zap" class="w-3 h-3 text-amber-400"></i>
+              <span class="text-[10px] font-mono font-semibold text-white">0ms Optimistik UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 2 · PROBLEM ═══ -->
+    <section class="slide" data-title="Muammo">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-5">
+        <div>
+          <div class="sl text-rose-400 mb-1">02 · Bozor Og'rig'i</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Muammo nima va <span class="text-grad-em">kimga ta'sir</span> qilmoqda?</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">Yiliga 340 million+ samaradorlik ilovasi o'chirilishiga sabab bo'layotgan uchta tasdiqlangan muammo.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <div class="glass-rose p-5 rounded-3xl space-y-3 hl flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <div class="ib w-10 h-10 bg-rose-500/10 border border-rose-500/20"><i data-lucide="users-2" class="w-4 h-4 text-rose-400"></i></div>
+                <div class="flex-1"><div class="tag text-rose-400/70 mb-0.5">Muammo #01</div><h3 class="text-sm sm:text-base font-bold text-white leading-tight">Intizomning Susayishi</h3></div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Telegram guruhlaridagi odatlar chellendjlarining <span class="text-rose-300 font-semibold font-mono">80%</span> i mas'uliyat mexanizmi yo'qligi sababli <span class="text-rose-300 font-semibold">2–3 hafta</span> ichida tarqab ketadi.</p>
+            </div>
+            <div>
+              <div class="w-full bg-slate-800/60 rounded-full h-1.5 overflow-hidden"><div class="bar-fill h-full rounded-full" style="width:80%;background:linear-gradient(90deg,#f43f5e,#fb7185)"></div></div>
+              <div class="text-[9px] font-mono text-slate-500 text-right mt-1">80% foydalanuvchi 21 kunda chiqib ketadi</div>
+            </div>
+          </div>
+          <div class="glass-rose p-5 rounded-3xl space-y-3 hl flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <div class="ib w-10 h-10 bg-amber-500/10 border border-amber-500/20"><i data-lucide="git-fork" class="w-4 h-4 text-amber-400"></i></div>
+                <div class="flex-1"><div class="tag text-amber-400/70 mb-0.5">Muammo #02</div><h3 class="text-sm sm:text-base font-bold text-white leading-tight">Ma'lumotlar Tarqoqligi</h3></div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Odatlar bir ilovada. 24 soatlik jadval boshqasida. Suv va qadamlar uchinchisida. <span class="text-amber-300 font-semibold">3+ ilova</span> orasidagi yuqori friction foydalanuvchini charchatadi.</p>
+            </div>
+            <div class="flex gap-1.5 pt-1">
+              <span class="tag px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400/80">Odat Ilova</span>
+              <span class="text-slate-600 flex items-center text-xs">+</span>
+              <span class="tag px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400/80">Salomatlik</span>
+              <span class="text-slate-600 flex items-center text-xs">+</span>
+              <span class="tag px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400/80">Jadval</span>
+            </div>
+          </div>
+          <div class="glass-rose p-5 rounded-3xl space-y-2.5 hl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <div class="ib w-10 h-10 bg-violet-500/10 border border-violet-500/20"><i data-lucide="bar-chart-3" class="w-4 h-4 text-violet-400"></i></div>
+                <div class="flex-1"><div class="tag text-violet-400/70 mb-0.5">Muammo #03</div><h3 class="text-sm sm:text-base font-bold text-white leading-tight">Tahlil Imkoniyatsizligi</h3></div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">Oddiy ro'yxatlar <span class="text-violet-300 font-semibold">uzoq muddatli vizualizatsiya</span> va oylik momentum tahlilidan mahrum.</p>
+            </div>
+            <!-- Skrinshot namoyishi: Biz qanday hal qildik -->
+            <div onclick="openGallery(7)" class="thumb-card h-20 relative rounded-xl border border-violet-500/30 group" title="Tracker Haftalik & Oylik Tahlilini ko'rish">
+              <img src="Screenshot_20260929_111225_Tracker.jpg" alt="Tracker Tahlil Grafiki" class="w-full h-full object-cover object-top filter brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-all duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-emerald-300 bg-slate-950/90 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Tracker Yechimi: Chuqur Tahlil ↗
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-500">
+              <i data-lucide="trending-down" class="w-3 h-3 text-violet-400"></i><span>Boshqa ilovalarda: Vizual o'sish grafigi yo'q</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400 shrink-0"></i>
+          <p class="text-xs text-slate-300 font-light"><span class="text-white font-medium">Asosiy xulosa:</span> Bozorda odat ilovalari, salomatlik ilovalari va jadval ilovalari bor — lekin Markaziy Osiyoda <span class="text-emerald-400 font-medium">o'zbek tilida so'zlovchi, mahalliy to'lovlarni qo'llab-quvvatlovchi va mas'uliyatni o'yinlashtiruvchi</span> yagona platforma yo'q.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 3 · SOLUTION ═══ -->
+    <section class="slide" data-title="Yechim">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-5">
+        <div>
+          <div class="sl text-emerald-400 mb-1">03 · Bizning Taklifimiz</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white"><span class="text-grad-em">Yagona Birlashgan</span> Intizom Tizimi</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">Bitta ilova. Uchta ustun. Nol to'siq.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <!-- Ustun 01: Matritsa & Tendensiya -->
+          <div class="glass-em p-5 rounded-3xl space-y-3 hl relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="ib w-10 h-10 bg-emerald-500/15 border border-emerald-500/30"><i data-lucide="layout-grid" class="w-5 h-5 text-emerald-400"></i></div>
+                <span class="tag text-emerald-400/80">Ustun 01</span>
+              </div>
+              <h3 class="text-sm sm:text-base font-bold text-white">To'liq Odat Matritsasi</h3>
+              <p class="text-xs text-slate-400 leading-relaxed"><span class="text-emerald-300 font-medium">90 kunlik faollik matritsasi</span> va 30 kunlik dinamik tendensiya tahlili.</p>
+            </div>
+            <!-- Skrinshot -->
+            <div onclick="openGallery(8)" class="thumb-card h-28 relative rounded-2xl border border-emerald-500/30 group" title="Faollik Matritsasi & AI Tahlilni ko'rish">
+              <img src="Screenshot_20260929_111231_Tracker.jpg" alt="Faollik Matritsasi" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-emerald-300 bg-slate-950/90 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Faollik Matritsasi & Tendensiya ↗
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ustun 02: 24s Routinlar -->
+          <div class="glass-em p-5 rounded-3xl space-y-3 hl relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="ib w-10 h-10 bg-teal-500/15 border border-teal-500/30"><i data-lucide="clock-4" class="w-5 h-5 text-teal-400"></i></div>
+                <span class="tag text-teal-400/80">Ustun 02</span>
+              </div>
+              <h3 class="text-sm sm:text-base font-bold text-white">24 Soatlik Aqlli Routinlar</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Samsung Modes ilhomida. <span class="text-teal-300 font-medium">Erta turish, Namoz, Til, Kod</span> — 0ms kechikish bilan avtomatik boshqaruv.</p>
+            </div>
+            <!-- Skrinshot -->
+            <div onclick="openGallery(4)" class="thumb-card h-28 relative rounded-2xl border border-teal-500/30 group" title="Odatlar va Kun Tartibini ko'rish">
+              <img src="Screenshot_20260929_111211_Tracker.jpg" alt="Odatlar va Kun Tartibi" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-teal-300 bg-slate-950/90 px-2 py-0.5 rounded border border-teal-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Odatlarni Boshqarish & Tartib ↗
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ustun 03: Health Connect -->
+          <div class="glass-em p-5 rounded-3xl space-y-3 hl relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="ib w-10 h-10 bg-blue-500/15 border border-blue-500/30"><i data-lucide="activity" class="w-5 h-5 text-blue-400"></i></div>
+                <span class="tag text-blue-400/80">Ustun 03</span>
+              </div>
+              <h3 class="text-sm sm:text-base font-bold text-white">Salomatlik Uchligi</h3>
+              <p class="text-xs text-slate-400 leading-relaxed"><span class="text-blue-300 font-medium">Google Health Connect</span> orqali qadamlar (173K+), uyqu (124s) fonda avtomatik o'qiladi.</p>
+            </div>
+            <!-- Skrinshot -->
+            <div onclick="openGallery(6)" class="thumb-card h-28 relative rounded-2xl border border-blue-500/30 group" title="Salomatlik Ko'rsatkichlarini ko'rish">
+              <img src="Screenshot_20260929_111220_Tracker.jpg" alt="Salomatlik Metrikalari" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-blue-300 bg-slate-950/90 px-2 py-0.5 rounded border border-blue-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Health Connect & Shaxsiy Tahlil ↗
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="glass-em px-5 py-3 rounded-2xl flex items-center gap-3">
+          <i data-lucide="zap" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <p class="text-xs text-slate-300"><span class="text-white font-semibold">Asosiy farq:</span> Uchala ustun bir-biri bilan nativ muloqot qiladi — routiningiz odatlaringizni, odatlaringiz salomatlik metrikalaringizni yangilaydi. Yagona izchil teskari aloqa halqasi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 4 · GAMIFICATION ═══ -->
+    <section class="slide" data-title="O'yinlashtirish Mexanizmi">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        <div>
+          <div class="sl text-amber-400 mb-0.5">04 · Mahsulot Yadrosi</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Gamification &amp; <span class="text-grad-em">Guruh Mas'uliyati</span></h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Passiv foydalanuvchilarni har kuni faol ishtiyoqmandlarga aylantiradigan mexanizm.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <!-- Dinamik Iqtisodiyot -->
+          <div class="glass p-5 rounded-3xl space-y-3 hl flex flex-col justify-between" style="border-color:rgba(245,158,11,.2)">
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
+                <div class="ib w-10 h-10 bg-amber-500/10 border border-amber-500/30"><i data-lucide="coins" class="w-5 h-5 text-amber-400"></i></div>
+                <div><h3 class="text-sm sm:text-base font-bold text-white">Ikki Tomonlama Dinamik Iqtisodiyot</h3><div class="text-[10px] font-mono text-amber-400/80">Aldashga qarshi · Adolatli Tanga Daftari</div></div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">Odatlar ✓ <span class="text-amber-300 font-semibold">XP + Tanga</span> beradi. Bekor qilish yoki aldash tangalarni <span class="text-rose-400 font-semibold">qat'iy chegirib oladi</span>. Bepul o'tish yo'q.</p>
+            </div>
+            <!-- Skrinshot: Nishonlar va Darajalar -->
+            <div onclick="openGallery(12)" class="thumb-card h-28 relative rounded-2xl border border-amber-500/30 group" title="Nishonlar va Darajalar Tizimini ko'rish">
+              <img src="Screenshot_20260929_111259_Tracker.jpg" alt="Nishonlar va Darajalar" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-amber-300 bg-slate-950/90 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Nishonlar: Lv.3 Qat'iyatli & Seriyalar ↗
+                </span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
+              <div class="rounded-xl p-2 text-center" style="background:rgba(2,44,34,.4);border:1px solid rgba(16,185,129,.2)"><div class="text-base font-mono font-bold text-emerald-400">+25 XP</div><div class="text-[9px] text-slate-500 font-mono">Odat Bajarildi</div></div>
+              <div class="rounded-xl p-2 text-center" style="background:rgba(76,5,25,.3);border:1px solid rgba(244,63,94,.2)"><div class="text-base font-mono font-bold text-rose-400">−10 XP</div><div class="text-[9px] text-slate-500 font-mono">Odat Bekor Qilindi</div></div>
+            </div>
+          </div>
+
+          <!-- Guruh HP Mas'uliyati -->
+          <div class="glass p-5 rounded-3xl space-y-3 hl flex flex-col justify-between" style="border-color:rgba(244,63,94,.2)">
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
+                <div class="ib w-10 h-10 bg-rose-500/10 border border-rose-500/30"><i data-lucide="shield" class="w-5 h-5 text-rose-400"></i></div>
+                <div><h3 class="text-sm sm:text-base font-bold text-white">Jamoa Omon Qolishi: 3-Yurak / HP</h3><div class="text-[10px] font-mono text-rose-400/80">Tengdoshlar Mas'uliyati · Guruh Bosimi</div></div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">Do'stlar guruh tuzadi. Yakka pasayish <span class="text-rose-400 font-semibold">umumiy HPni kamaytiradi</span>. 3 yurak tugadi → guruh yopiladi.</p>
+            </div>
+            <!-- Skrinshot: Haqiqiy Guruh bellashuvi -->
+            <div onclick="openGallery(5)" class="thumb-card h-28 relative rounded-2xl border border-rose-500/30 group" title="Jonli Guruh Ekrani: Kengash">
+              <img src="Screenshot_20260929_111216_Tracker.jpg" alt="Guruh Raqobati" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-rose-300 bg-slate-950/90 px-2 py-0.5 rounded border border-rose-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Jonli Guruh Ekrani: Kengash 👑 ↗
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between glass px-3 py-2 rounded-xl">
+              <div class="flex gap-1.5">
+                <i data-lucide="heart" class="w-4 h-4 text-rose-400" style="fill:#f43f5e"></i>
+                <i data-lucide="heart" class="w-4 h-4 text-rose-400" style="fill:#f43f5e"></i>
+                <i data-lucide="heart" class="w-4 h-4 text-slate-700" style="fill:#334155"></i>
+              </div>
+              <div class="text-[10px] font-mono text-slate-400">Jamoa HP: <span class="text-rose-400 font-bold">2/3</span> qoldi · Guruh kodi: <span class="text-emerald-400 font-bold">J90BBZ</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="glass px-5 py-2.5 rounded-2xl flex items-center gap-3">
+          <i data-lucide="quote" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <p class="text-xs text-slate-300 italic">"Ichki motivatsiya dastlabki qabul qilishni boshqaradi. <span class="text-emerald-400 not-italic font-medium">Ijtimoiy oqibat</span> uzoq muddatli saqlab qolishni boshqaradi." — Tracker mahsulot tezisi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 5 · MARKET ═══ -->
+    <section class="slide" data-title="Bozor Imkoniyati">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        <div>
+          <div class="sl text-emerald-400 mb-0.5">05 · Bozor Hajmi</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Bozor Imkoniyati <span class="text-grad-em">&amp; 2026 Trendlar</span></h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Shiddat bilan o'sayotgan global bozor ichidagi ulkan, e'tibordan chetda qolgan mintaqaviy imkoniyat.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <div class="glass p-5 rounded-3xl text-center space-y-2.5 hl relative overflow-hidden">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(16,185,129,.05),transparent)"></div>
+            <div class="sl text-slate-500">TAM · Global</div>
+            <div class="text-4xl sm:text-5xl font-black font-mono text-grad-em">$3.8B+</div>
+            <div class="w-full h-px bg-slate-800"></div>
+            <p class="text-xs text-slate-400">Global Raqamli Salomatlik va Samaradorlik bozori.</p>
+            <div class="tag px-2 py-0.5 rounded-lg inline-block bg-emerald-950/40 border border-emerald-500/20 text-emerald-400/80">Yillik o'sish 12.4% (2024–2029)</div>
+          </div>
+          <div class="glass p-5 rounded-3xl text-center space-y-2.5 hl relative overflow-hidden">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(20,184,166,.05),transparent)"></div>
+            <div class="sl text-slate-500">SAM · CIS &amp; Central Asia</div>
+            <div class="text-4xl sm:text-5xl font-black font-mono" style="background:linear-gradient(135deg,#2dd4bf,#14b8a6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35M+</div>
+            <div class="w-full h-px bg-slate-800"></div>
+            <p class="text-xs text-slate-400">O'zbekiston, Qozog'iston va Rossiyada raqamli yoshlar.</p>
+            <div class="tag px-2 py-0.5 rounded-lg inline-block" style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.2);color:#2dd4bf">55% smartfon qamrovi ↑</div>
+          </div>
+          <div class="glass p-5 rounded-3xl text-center space-y-2.5 hl relative overflow-hidden">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(16,185,129,.05),transparent)"></div>
+            <div class="sl text-slate-500">SOM · Uzbekistan First</div>
+            <div class="text-4xl sm:text-5xl font-black font-mono text-grad-em">100K+</div>
+            <div class="w-full h-px bg-slate-800"></div>
+            <p class="text-xs text-slate-400">Play Store ishga tushirilgandan keyingi 12 oy maqsadi.</p>
+            <div class="tag px-2 py-0.5 rounded-lg inline-block bg-emerald-950/40 border border-emerald-500/20 text-emerald-400/80">1-yil OFA: 10,000</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <!-- Mahalliy Til: Haqiqiy Skrinshot -->
+          <div onclick="openGallery(11)" class="glass-em p-4 rounded-2xl flex items-center justify-between gap-3 hl cursor-pointer group" title="Til va Sozlamalar skrinshotini ko'rish">
+            <div class="flex items-center gap-3">
+              <div class="ib w-10 h-10 bg-emerald-500/10 border border-emerald-500/30 shrink-0"><i data-lucide="map-pin" class="w-4 h-4 text-emerald-400"></i></div>
+              <div><div class="text-sm font-semibold text-white">Mahalliy Til Birinchi</div><div class="text-xs text-slate-400">To'liq O'Z (Lotin) / RU / EN nativ lokalizatsiya.</div></div>
+            </div>
+            <div class="thumb-card w-24 h-14 shrink-0 rounded-xl border border-emerald-500/30 overflow-hidden relative">
+              <img src="Screenshot_20260929_111253_Tracker.jpg" alt="Til sozlamalari" class="w-full h-full object-cover object-center group-hover:scale-105 transition-all">
+              <div class="overlay"><span class="text-[8px] font-mono text-emerald-300">🇺🇿 🇷🇺 🇬🇧</span></div>
+            </div>
+          </div>
+          <!-- Mahalliy To'lov: Click & Payme -->
+          <div onclick="openGallery(13)" class="glass-em p-4 rounded-2xl flex items-center justify-between gap-3 hl cursor-pointer group" title="Do'kon va To'lovlar skrinshotini ko'rish">
+            <div class="flex items-center gap-3">
+              <div class="ib w-10 h-10 bg-blue-500/10 border border-blue-500/30 shrink-0"><i data-lucide="credit-card" class="w-4 h-4 text-blue-400"></i></div>
+              <div><div class="text-sm font-semibold text-white">Mahalliy To'lov Tizimi</div><div class="text-xs text-slate-400">Click va Payme UZS mikro-tranzaksiyalari.</div></div>
+            </div>
+            <div class="thumb-card w-24 h-14 shrink-0 rounded-xl border border-blue-500/30 overflow-hidden relative">
+              <img src="Screenshot_20260929_111306_Tracker.jpg" alt="Tanga do'koni" class="w-full h-full object-cover object-top group-hover:scale-105 transition-all">
+              <div class="overlay"><span class="text-[8px] font-mono text-amber-300">755 Tanga ↗</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 6 · TECH ═══ -->
+    <section class="slide" data-title="Texnologik Arxitektura">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        <div>
+          <div class="sl text-emerald-400 mb-0.5">06 · Arxitektura</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Texnologik Stack &amp; <span class="text-grad-em">Arxitektura Ustunligi</span></h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Ishlab chiqarishga tayyor, sinovdan o'tgan va gorizontal o'sish uchun qurilgan.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+          <div class="glass p-3.5 rounded-2xl space-y-2 hl">
+            <div class="flex items-center gap-2"><div class="ib w-7 h-7 rounded-xl bg-cyan-500/15 border border-cyan-500/25"><i data-lucide="layers-3" class="w-3.5 h-3.5 text-cyan-400"></i></div><div class="sl text-slate-500 text-[9px]">Frontend</div></div>
+            <div class="text-sm font-bold text-white">React 18 + TS</div>
+            <p class="text-[10px] text-slate-400 leading-relaxed">Vite, Tailwind, Capacitor 8 Native ko'prigi.</p>
+          </div>
+          <div class="glass p-3.5 rounded-2xl space-y-2 hl">
+            <div class="flex items-center gap-2"><div class="ib w-7 h-7 rounded-xl bg-emerald-500/15 border border-emerald-500/25"><i data-lucide="database" class="w-3.5 h-3.5 text-emerald-400"></i></div><div class="sl text-slate-500 text-[9px]">Backend</div></div>
+            <div class="text-sm font-bold text-white">Supabase</div>
+            <p class="text-[10px] text-slate-400 leading-relaxed">PostgreSQL, RLS xavfsizlik, Realtime obuna.</p>
+          </div>
+          <div class="glass p-3.5 rounded-2xl space-y-2 hl">
+            <div class="flex items-center gap-2"><div class="ib w-7 h-7 rounded-xl bg-amber-500/15 border border-amber-500/25"><i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i></div><div class="sl text-slate-500 text-[9px]">Tezlik</div></div>
+            <div class="text-sm font-bold text-white font-mono">0ms UI</div>
+            <p class="text-[10px] text-slate-400 leading-relaxed">3 Bosqichli Optimistik Holat Mexanizmi.</p>
+          </div>
+          <div class="glass p-3.5 rounded-2xl space-y-2 hl">
+            <div class="flex items-center gap-2"><div class="ib w-7 h-7 rounded-xl bg-violet-500/15 border border-violet-500/25"><i data-lucide="smartphone" class="w-3.5 h-3.5 text-violet-400"></i></div><div class="sl text-slate-500 text-[9px]">Nativ</div></div>
+            <div class="text-sm font-bold text-white">Play Xizmatlari</div>
+            <p class="text-[10px] text-slate-400 leading-relaxed">Health Connect, Mahalliy Signallar, Haptics.</p>
+          </div>
+        </div>
+
+        <!-- 3 bosqichli mexanizm + Jonli UI skrinshoti -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+          <div class="lg:col-span-8 glass p-4 rounded-3xl space-y-2.5">
+            <div class="sl text-slate-500">3 Bosqichli Optimistik Holat Mexanizmi</div>
+            <div class="flex items-center gap-2 overflow-x-auto pb-1">
+              <div class="glass px-3 py-2.5 rounded-2xl text-center min-w-[100px]" style="border-color:rgba(16,185,129,.2)"><i data-lucide="hand-pointer" class="w-3.5 h-3.5 text-emerald-400 mx-auto mb-1"></i><div class="text-xs font-bold text-white">Amal</div><div class="text-[9px] font-mono text-slate-500">Odat ✓</div></div>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+              <div class="glass px-3 py-2.5 rounded-2xl text-center min-w-[110px]" style="border-color:rgba(245,158,11,.2)"><i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400 mx-auto mb-1"></i><div class="text-xs font-bold text-white">1-Bosqich</div><div class="text-[9px] font-mono text-slate-500">0ms Lokal UI</div></div>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+              <div class="glass px-3 py-2.5 rounded-2xl text-center min-w-[110px]" style="border-color:rgba(59,130,246,.2)"><i data-lucide="timer" class="w-3.5 h-3.5 text-blue-400 mx-auto mb-1"></i><div class="text-xs font-bold text-white">2-Bosqich</div><div class="text-[9px] font-mono text-slate-500">Navbat 800ms</div></div>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+              <div class="glass px-3 py-2.5 rounded-2xl text-center min-w-[110px]" style="border-color:rgba(16,185,129,.2)"><i data-lucide="cloud" class="w-3.5 h-3.5 text-emerald-400 mx-auto mb-1"></i><div class="text-xs font-bold text-white">3-Bosqich</div><div class="text-[9px] font-mono text-slate-500">Supabase RLS</div></div>
+            </div>
+          </div>
+          <!-- Skrinshot namoyishi: 0ms UI -->
+          <div onclick="openGallery(2)" class="lg:col-span-4 thumb-card h-[106px] relative rounded-3xl border border-emerald-500/35 cursor-pointer group" title="Kunlik odatlar va 0ms UI skrinshoti">
+            <img src="Screenshot_20260929_111202_Tracker.jpg" alt="0ms UI odatlar ro'yxati" class="w-full h-full object-cover object-top group-hover:scale-105 transition-all">
+            <div class="overlay">
+              <span class="text-[9px] font-mono text-emerald-300 bg-slate-950/90 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                <i data-lucide="zap" class="w-2.5 h-2.5"></i> Jonli 0ms Bajarish Ekrani ↗
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between glass px-5 py-2.5 rounded-2xl">
+          <div class="flex items-center gap-2 text-xs font-mono text-slate-400"><i data-lucide="package" class="w-3.5 h-3.5 text-emerald-400"></i><span>Build: TargetSdk <span class="text-white">36</span> (Android 14+)</span></div>
+          <div class="flex items-center gap-4 text-xs font-mono"><span class="text-slate-500">Paket:</span><span class="text-emerald-400 font-semibold">~8.28 MB .aab</span><span class="text-slate-500">Imzolangan va Chiqarilgan</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 7 · BUSINESS MODEL ═══ -->
+    <section class="slide" data-title="Biznes Model">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        <div>
+          <div class="sl text-emerald-400 mb-0.5">07 · Monetizatsiya</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Daromad Olish <span class="text-grad-em">Mexanizmi</span></h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">O'zbek bozori uchun mo'ljallangan uchta o'zaro mustahkamlovchi daromad oqimi.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <!-- B2C Freemium -->
+          <div class="glass p-5 rounded-3xl space-y-3 hl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="sl text-slate-400">Stream 01 · B2C</div>
+              <div class="ib w-10 h-10 bg-slate-700/50 border border-slate-600/50"><i data-lucide="gift" class="w-5 h-5 text-slate-300"></i></div>
+              <h3 class="text-base font-bold text-white">Freemium Asosi</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Cheksiz kunlik odatlar, jurnal yozuvlari va asosiy salomatlik kuzatuvi — <span class="text-white font-medium">doimo bepul</span>.</p>
+            </div>
+            <div class="space-y-1.5 pt-1">
+              <div class="flex items-center gap-2 text-xs text-emerald-400"><i data-lucide="check" class="w-3 h-3"></i><span>Cheksiz odatlar</span></div>
+              <div class="flex items-center gap-2 text-xs text-emerald-400"><i data-lucide="check" class="w-3 h-3"></i><span>Salomatlik uchligisi</span></div>
+              <div class="flex items-center gap-2 text-xs text-emerald-400"><i data-lucide="check" class="w-3 h-3"></i><span>Kunlik jurnal</span></div>
+            </div>
+          </div>
+
+          <!-- In-App Tanga Do'koni -->
+          <div class="glass-em p-5 rounded-3xl space-y-3 hl relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-3 right-3"><span class="tag px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400">Asosiy Daromad</span></div>
+            <div class="space-y-1.5">
+              <div class="sl text-emerald-400">Stream 02 · In-App</div>
+              <div class="ib w-10 h-10 bg-amber-500/10 border border-amber-500/30"><i data-lucide="coins" class="w-5 h-5 text-amber-400"></i></div>
+              <h3 class="text-base font-bold text-white">Tanga To'plamlari &amp; Qalqonlar</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Click/Payme orqali UZS mikro-tranzaksiyalar (Streak Qutqaruvchi, Ramkalar).</p>
+            </div>
+            <!-- Skrinshot: Tanga Do'koni -->
+            <div onclick="openGallery(13)" class="thumb-card h-24 relative rounded-xl border border-amber-500/30 group" title="Tanga Do'koni skrinshotini ko'rish">
+              <img src="Screenshot_20260929_111306_Tracker.jpg" alt="Tanga Do'koni" class="w-full h-full object-cover object-top group-hover:scale-105 transition-all">
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-amber-300 bg-slate-950/90 px-2 py-0.5 rounded border border-amber-500/30 flex items-center gap-1">
+                  <i data-lucide="eye" class="w-2.5 h-2.5"></i> Tanga Do'koni & Qalqonlar ↗
+                </span>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between rounded-lg px-2.5 py-1 glass text-xs"><span class="text-slate-300 text-[11px]">Boshlang'ich (9,900 UZS)</span><span class="font-mono text-amber-400 font-bold text-[11px]">100 🪙</span></div>
+              <div class="flex items-center justify-between rounded-lg px-2.5 py-1" style="background:rgba(2,44,34,.4);border:1px solid rgba(16,185,129,.2)"><span class="text-white font-medium text-[11px]">Premium (59,900 UZS)</span><span class="font-mono text-emerald-400 font-bold text-[11px]">1,000 🪙</span></div>
+            </div>
+          </div>
+
+          <!-- B2B / EdTech -->
+          <div class="glass p-5 rounded-3xl space-y-3 hl flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="sl text-slate-400">Stream 03 · B2B / EdTech</div>
+              <div class="ib w-10 h-10 bg-violet-500/10 border border-violet-500/30"><i data-lucide="building-2" class="w-5 h-5 text-violet-400"></i></div>
+              <h3 class="text-base font-bold text-white">Korporativ Marafonlar</h3>
+              <p class="text-xs text-slate-400 leading-relaxed"><span class="text-white">O'quv markazlari</span> va kompaniyalar uchun oq yorliqli intizom marafonlari.</p>
+            </div>
+            <div class="space-y-1.5 pt-1">
+              <div class="flex items-center gap-2 text-xs text-violet-400"><i data-lucide="check" class="w-3 h-3"></i><span>Admin guruh paneli</span></div>
+              <div class="flex items-center gap-2 text-xs text-violet-400"><i data-lucide="check" class="w-3 h-3"></i><span>Maxsus branding</span></div>
+              <div class="flex items-center gap-2 text-xs text-violet-400"><i data-lucide="check" class="w-3 h-3"></i><span>Tahlil va hisobotlar</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="glass px-5 py-2.5 rounded-2xl flex items-center gap-4">
+          <div class="flex items-center gap-2 text-xs font-mono text-slate-400 shrink-0"><i data-lucide="credit-card" class="w-3.5 h-3.5 text-emerald-400"></i><span>Mahalliy To'lovlar:</span></div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 px-3 py-1 rounded-xl glass"><div class="w-2 h-2 rounded-full" style="background:#00A1F1"></div><span class="text-xs font-bold" style="color:#00A1F1">Click</span></div>
+            <div class="flex items-center gap-1.5 px-3 py-1 rounded-xl glass"><div class="w-2 h-2 rounded-full" style="background:#17C1C4"></div><span class="text-xs font-bold" style="color:#17C1C4">Payme</span></div>
+          </div>
+          <div class="ml-auto text-[10px] font-mono text-slate-500 hidden sm:block">O'zbekiston uchun karta to'siqlari yo'q</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 8 · COMPETITIVE ═══ -->
+    <section class="slide" data-title="Raqobat Ustunligi">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-2.5">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="sl text-emerald-400 mb-0.5">08 · Raqobat Tahlili</div>
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">Raqobatchilardan <span class="text-grad-em">Nima Bilan Farqlanamiz?</span></h2>
+            <p class="text-slate-500 text-[11px] mt-0.5">Haqiqiy narxlar, mavjudlik va texnik imkoniyatlar asosida solishtirma</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <div class="glass px-3 py-1.5 rounded-xl text-center">
+              <div class="text-[9px] font-mono text-slate-500">Bozorda birlamchi</div>
+              <div class="text-xs font-bold text-emerald-400">O'zbekiston 🇺🇿</div>
+            </div>
+            <button onclick="openGallery(11)" class="glass px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-mono text-emerald-400 border border-emerald-500/35 hover:bg-emerald-500/10 cursor-pointer transition-all" title="Nativ O'zbek tili sozlamalarini ko'rish">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              <span>UI Isboti (13)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Kengaytirilgan jadval -->
+        <div class="rounded-2xl overflow-hidden border border-slate-800/60" style="background:rgba(15,23,42,.82);backdrop-filter:blur(20px)">
+          <table class="w-full comp-table">
+            <thead>
+              <tr class="border-b border-slate-800/80" style="background:rgba(5,8,17,.95)">
+                <th class="px-3 py-2 text-left text-slate-500 text-[10px]" style="width:24%">Xususiyat / Mezon</th>
+                <th class="px-3 py-2 text-center" style="width:20%">
+                  <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-emerald-950/60 border border-emerald-500/35">
+                    <i data-lucide="check-square" class="w-3 h-3 text-emerald-400"></i>
+                    <span class="text-emerald-400 text-[11px] font-bold">Tracker (Biz)</span>
+                  </div>
+                </th>
+                <th class="px-3 py-2 text-center text-slate-500 text-[10px] font-semibold" style="width:19%">
+                  <div>Habitica</div><div class="text-[9px] font-mono text-slate-600 font-normal">★ 4.2 · $9/oy</div>
+                </th>
+                <th class="px-3 py-2 text-center text-slate-500 text-[10px] font-semibold" style="width:19%">
+                  <div>TickTick</div><div class="text-[9px] font-mono text-slate-600 font-normal">★ 4.6 · $35.99/yil</div>
+                </th>
+                <th class="px-3 py-2 text-center text-slate-500 text-[10px] font-semibold" style="width:18%">
+                  <div>Streaks</div><div class="text-[9px] font-mono text-slate-600 font-normal">★ 4.8 · iOS only</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/30">
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">O'zbek tili (UI)</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> To'liq nativ</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+              </tr>
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">Mahalliy to'lov (Click/Payme)</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Click + Payme</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-slate-500 text-[10px]">Visa/MC · <span class="text-rose-400">imkonsiz</span></div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-slate-500 text-[10px]">Xalqaro · <span class="text-rose-400">~$36</span></div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-slate-500 text-[10px]">App Store · <span class="text-rose-400">Android yo'q</span></div></td>
+              </tr>
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">Jamoa HP mas'uliyati</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 3-Yurak HP</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-amber-400 text-[10px]">Boss jangi (boshqa)</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+              </tr>
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">24s Routine → Odat (0ms)</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Avtomatik</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-amber-400 text-[10px]">Eslatma (sinx emas)</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+              </tr>
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">Health Connect (qadam/suv)</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Nativ API</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-xs font-mono">✗ Yo'q</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-amber-400 text-[10px]">Apple Health (iOS)</div></td>
+              </tr>
+              <tr class="hover:bg-emerald-500/3 transition-colors">
+                <td class="px-3 py-1.5 text-slate-200 font-semibold text-xs">Bepul asosiy versiya</td>
+                <td class="px-3 py-1.5"><div class="flex items-center justify-center gap-1 text-xs font-bold text-emerald-400"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Doimo bepul</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-amber-400 text-[10px]">Cheklangan · $9/oy</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-amber-400 text-[10px]">Qisman · Premium kerak</div></td>
+                <td class="px-3 py-1.5 text-center"><div class="text-rose-500 text-[10px]">$4.99/oy · bepul yo'q</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Uch ustunlik kartochkasi -->
+        <div class="grid grid-cols-3 gap-2.5">
+          <div class="glass px-3.5 py-2.5 rounded-2xl flex items-start gap-2.5" style="border-color:rgba(244,63,94,.15)">
+            <div class="ib w-7 h-7 bg-rose-500/10 border border-rose-500/20 shrink-0 rounded-xl"><i data-lucide="ban" class="w-3.5 h-3.5 text-rose-400"></i></div>
+            <div>
+              <div class="text-xs font-bold text-white mb-0.5">Raqobatchilar to'sig'i</div>
+              <div class="text-[10px] text-slate-400 leading-relaxed">Habitica'ga <span class="text-rose-400 font-mono font-medium">Visa kerak</span>. TickTick'da o'zbek tili <span class="text-rose-400 font-mono">yo'q</span>. Streaks <span class="text-rose-400 font-mono">Android'da yo'q</span>.</div>
+            </div>
+          </div>
+          <div class="glass-em px-3.5 py-2.5 rounded-2xl flex items-start gap-2.5">
+            <div class="ib w-7 h-7 bg-emerald-500/10 border border-emerald-500/20 shrink-0 rounded-xl"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i></div>
+            <div class="flex-1">
+              <div class="text-xs font-bold text-white mb-0.5">Bizning mudofaa xandaqimiz</div>
+              <div class="text-[10px] text-slate-400 leading-relaxed"><span class="text-emerald-400 font-mono font-medium">O'zbek tili + Click/Payme + HP</span> — birlashgan ekotizim.</div>
+              <div class="flex items-center gap-2 mt-1">
+                <button onclick="openGallery(11)" class="text-[9px] font-mono text-emerald-400 hover:text-emerald-300 underline flex items-center gap-0.5 cursor-pointer">
+                  <i data-lucide="globe" class="w-2.5 h-2.5"></i> Til sozlamalari ↗
+                </button>
+                <span class="text-slate-600">·</span>
+                <button onclick="openGallery(5)" class="text-[9px] font-mono text-emerald-400 hover:text-emerald-300 underline flex items-center gap-0.5 cursor-pointer">
+                  <i data-lucide="users" class="w-2.5 h-2.5"></i> Guruh HP ↗
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="glass px-3.5 py-2.5 rounded-2xl flex items-start gap-2.5" style="border-color:rgba(245,158,11,.15)">
+            <div class="ib w-7 h-7 bg-amber-500/10 border border-amber-500/20 shrink-0 rounded-xl"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i></div>
+            <div>
+              <div class="text-xs font-bold text-white mb-0.5">Birinchi kiruvchi ustunligi</div>
+              <div class="text-[10px] text-slate-400 leading-relaxed"><span class="text-amber-400 font-mono font-medium">35M+ O'zbek foydalanuvchisi</span> uchun yagona to'liq yechim.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 9 · ROADMAP ═══ -->
+    <section class="slide" data-title="Mahsulot Yo'l Xaritasi">
+      <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        <div>
+          <div class="sl text-emerald-400 mb-0.5">09 · Yo'l Xaritasi</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Rivojlanish <span class="text-grad-em">Milestones</span></h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">MVPdan to'liq ekotizimgacha aniq, bajarilishi mumkin bo'lgan bosqichlar.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <!-- Q3 2026 Core MVP (Bajarildi) -->
+          <div class="glass-em p-4 rounded-3xl space-y-2.5 hl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1"><div class="tag px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400">✓ BAJARILDI</div><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i></div>
+              <div class="text-xs font-mono text-slate-400">Q3 · 2026</div>
+              <h3 class="text-base font-black text-white">Core MVP (Ishlab turibdi)</h3>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="check" class="w-3 h-3 text-emerald-400 shrink-0 mt-0.5"></i><span class="text-slate-300">3 bosqichli optimistik 0ms mexanizmi</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="check" class="w-3 h-3 text-emerald-400 shrink-0 mt-0.5"></i><span class="text-slate-300">24s tartib & 90 kunlik odat matritsasi</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="check" class="w-3 h-3 text-emerald-400 shrink-0 mt-0.5"></i><span class="text-slate-300">TargetSdk 36 (Android 14+) .aab bino</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="check" class="w-3 h-3 text-emerald-400 shrink-0 mt-0.5"></i><span class="text-slate-300">Google Health Connect integratsiyasi</span></div>
+            </div>
+            <!-- Skrinshotlar mini-preview kartasi -->
+            <div onclick="openGallery(1)" class="thumb-card h-16 relative rounded-xl border border-emerald-500/35 group cursor-pointer overflow-hidden mt-1" title="13 ta jonli ekranni galereyada ko'rish">
+              <div class="grid grid-cols-3 h-full w-full">
+                <img src="Screenshot_20260929_111151_Tracker.jpg" alt="Dashboard" class="w-full h-full object-cover object-top border-r border-slate-800">
+                <img src="Screenshot_20260929_111216_Tracker.jpg" alt="Guruh" class="w-full h-full object-cover object-top border-r border-slate-800">
+                <img src="Screenshot_20260929_111231_Tracker.jpg" alt="Faollik" class="w-full h-full object-cover object-top">
+              </div>
+              <div class="overlay">
+                <span class="text-[9px] font-mono text-emerald-300 bg-slate-950/90 px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1">
+                  <i data-lucide="sparkles" class="w-2.5 h-2.5"></i> 13 ta Jonli Ekran Sinovdan O'tgan ↗
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 2026 Current -->
+          <div class="glass p-4 rounded-3xl space-y-2.5 hl flex flex-col justify-between" style="border-color:rgba(245,158,11,.2)">
+            <div>
+              <div class="flex items-center justify-between mb-1"><div class="tag px-2.5 py-0.5 rounded-full" style="background:rgba(120,53,15,.4);border:1px solid rgba(245,158,11,.4);color:#fbbf24">◉ CURRENT</div><i data-lucide="rocket" class="w-4 h-4 text-amber-400"></i></div>
+              <div class="text-xs font-mono text-slate-400">Q4 · 2026</div>
+              <h3 class="text-base font-black text-white">Do'kon va Kengaytirish</h3>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="arrow-right" class="w-3 h-3 text-amber-400 shrink-0 mt-0.5"></i><span class="text-slate-400">Google Play Store rasmiy nashri</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="arrow-right" class="w-3 h-3 text-amber-400 shrink-0 mt-0.5"></i><span class="text-slate-400">IT Park inkubatsiya va rezidentlik arizasi</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="arrow-right" class="w-3 h-3 text-amber-400 shrink-0 mt-0.5"></i><span class="text-slate-400">Click va Payme tanga xaridi jonli</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="arrow-right" class="w-3 h-3 text-amber-400 shrink-0 mt-0.5"></i><span class="text-slate-400">10,000 OFA maqsadiga erishish</span></div>
+            </div>
+            <!-- Do'kon skrinshotiga havola -->
+            <div onclick="openGallery(13)" class="pt-2 border-t border-amber-500/20 cursor-pointer flex items-center justify-between text-[11px] font-mono text-amber-300 hover:text-amber-200">
+              <span class="flex items-center gap-1.5"><i data-lucide="shopping-bag" class="w-3 h-3"></i> Tanga Do'koni & Qalqonlar</span>
+              <span class="underline">Ko'rish ↗</span>
+            </div>
+          </div>
+
+          <!-- Q1 2027 Kelajak -->
+          <div class="glass p-4 rounded-3xl space-y-2.5 hl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1"><div class="tag px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-700 text-slate-400">○ KELAJAK</div><i data-lucide="star" class="w-4 h-4 text-violet-400"></i></div>
+              <div class="text-xs font-mono text-slate-400">Q1 · 2027</div>
+              <h3 class="text-base font-black text-white">v2.0 Ekotizim</h3>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="circle" class="w-3 h-3 text-slate-600 shrink-0 mt-0.5"></i><span class="text-slate-500">2D Vektor / Anime RPG darajalash</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="circle" class="w-3 h-3 text-slate-600 shrink-0 mt-0.5"></i><span class="text-slate-500">Guruh ligalari va mintaqaviy reytinglar</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="circle" class="w-3 h-3 text-slate-600 shrink-0 mt-0.5"></i><span class="text-slate-500">iOS va Web platformalararo reliz</span></div>
+              <div class="flex items-start gap-1.5 text-xs"><i data-lucide="circle" class="w-3 h-3 text-slate-600 shrink-0 mt-0.5"></i><span class="text-slate-500">Qozog'iston va Qirg'izistonga kirish</span></div>
+            </div>
+            <div class="pt-2 border-t border-slate-800 text-[10px] font-mono text-slate-500 flex items-center gap-1">
+              <i data-lucide="compass" class="w-3 h-3"></i> B2B korporativ marafonlar
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-em px-5 py-2.5 rounded-2xl flex flex-wrap items-center gap-6">
+          <div class="flex items-center gap-2 text-xs font-mono"><i data-lucide="target" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-slate-400">12 Oylik KPIlar:</span></div>
+          <div class="flex items-center gap-1.5 text-xs font-mono"><span class="text-slate-500">OFA</span><span class="text-white font-bold">10,000</span></div>
+          <div class="w-px h-4 bg-slate-700"></div>
+          <div class="flex items-center gap-1.5 text-xs font-mono"><span class="text-slate-500">Daromad</span><span class="text-white font-bold">$5,000+</span></div>
+          <div class="w-px h-4 bg-slate-700"></div>
+          <div class="flex items-center gap-1.5 text-xs font-mono"><span class="text-slate-500">Reyting</span><span class="text-white font-bold">4.5★ Play</span></div>
+          <div class="w-px h-4 bg-slate-700"></div>
+          <div class="flex items-center gap-1.5 text-xs font-mono"><span class="text-slate-500">Jamoalar</span><span class="text-white font-bold">500+ guruh</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SLIDE 10 · THE ASK ═══ -->
+    <section class="slide" data-title="Taklif va So'rov">
+      <div class="w-full max-w-4xl mx-auto flex flex-col items-center text-center gap-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 tag">
+          <i data-lucide="rocket" class="w-3 h-3"></i>
+          <span>Taklif va Kelajakdagi Hamkorlik</span>
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.05]">Kelajakni <span class="text-grad-em">Birgalikda</span> Quramiz</h2>
+          <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-light"><span class="text-white font-medium">IT Park inkubatsiya, mentorlik va mintaqaviy akseleratsiya hamkorligini</span> qidirayapmiz — intizomli hayotni 35 million+ Markaziy Osiyo foydalanuvchisiga olib kelish uchun.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full max-w-2xl">
+          <div class="glass-em p-3 rounded-2xl space-y-1 text-center hl">
+            <div class="ib w-8 h-8 bg-emerald-500/15 border border-emerald-500/30 mx-auto"><i data-lucide="building" class="w-4 h-4 text-emerald-400"></i></div>
+            <div class="text-xs font-bold text-white">IT Park Rezidentligi</div>
+            <div class="text-[10px] text-slate-400">Inkubatsiya va yuridik shaxs tashkil etish</div>
+          </div>
+          <div class="glass-em p-3 rounded-2xl space-y-1 text-center hl">
+            <div class="ib w-8 h-8 bg-violet-500/15 border border-violet-500/30 mx-auto"><i data-lucide="users" class="w-4 h-4 text-violet-400"></i></div>
+            <div class="text-xs font-bold text-white">Mentorlik Tarmog'i</div>
+            <div class="text-[10px] text-slate-400">Bozorga chiqish va mahsulot strategiyasi</div>
+          </div>
+          <div class="glass-em p-3 rounded-2xl space-y-1 text-center hl">
+            <div class="ib w-8 h-8 bg-amber-500/15 border border-amber-500/30 mx-auto"><i data-lucide="trending-up" class="w-4 h-4 text-amber-400"></i></div>
+            <div class="text-xs font-bold text-white">Mintaqaviy Kengaytirish</div>
+            <div class="text-[10px] text-slate-400">QZ / QR kengaytirish taqdimotlari</div>
+          </div>
+        </div>
+
+        <!-- Founder in-app profile & GitHub cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl text-left">
+          <!-- Founder in-app card with real screenshot thumbnail -->
+          <div onclick="openGallery(9)" class="glass p-3 rounded-2xl flex items-center gap-3 hl cursor-pointer group border border-emerald-500/30" title="Asadbek Orolovning Tracker ichidagi profili">
+            <div class="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-emerald-500/40">
+              <img src="Screenshot_20260929_111239_Tracker.jpg" alt="Asadbek O'rolov profili" class="w-full h-full object-cover object-top group-hover:scale-110 transition-all">
+              <div class="absolute inset-0 bg-emerald-500/10"></div>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-bold text-white">Asadbek Orolov</span>
+                <span class="text-[8px] font-mono px-1 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-500/30">Lv.3 @vectorro</span>
+              </div>
+              <div class="text-[10px] text-slate-400">Asoschi va Bosh Dasturchi</div>
+              <div class="text-[9px] font-mono text-emerald-400 flex items-center gap-1 mt-0.5">
+                <i data-lucide="user-check" class="w-2.5 h-2.5"></i> Ilovadagi jonli profilni ko'rish ↗
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub repo -->
+          <a href="https://github.com/asadbekorolov/Habbit_tracker" target="_blank" class="glass p-3 rounded-2xl flex items-center gap-3 hl cursor-pointer group border border-slate-700/60">
+            <div class="ib w-11 h-11 bg-slate-800 border border-slate-700 rounded-xl shrink-0 group-hover:border-slate-500 transition-all">
+              <i data-lucide="github" class="w-5 h-5 text-white"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[9px] font-mono text-slate-500">Manba Repozitoriyasi</div>
+              <div class="text-xs font-mono text-blue-400 font-semibold group-hover:underline">Habbit_tracker</div>
+              <div class="text-[10px] text-slate-400">TargetSdk 36 · Android 14+</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Big Gallery CTA button -->
+        <div class="flex items-center gap-3 w-full max-w-2xl">
+          <button onclick="openGallery(0)" class="flex-1 flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl grad-em text-slate-950 font-bold hover:opacity-95 transition-all active:scale-95 text-xs shadow-xl cursor-pointer" style="box-shadow:0 6px 20px rgba(16,185,129,.35)">
+            <i data-lucide="gallery-thumbnails" class="w-4 h-4"></i>
+            <span>Barcha 13 ta Jonli Ekran Galereyasini Ochish</span>
+            <kbd class="px-1.5 py-0.5 rounded bg-slate-950/20 text-[9px] font-mono">G</kbd>
+          </button>
+        </div>
+
+        <div class="glass-em px-5 py-2 rounded-2xl flex items-center gap-2.5 text-center">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <p class="text-[11px] text-slate-300"><span class="text-white font-semibold">IT Park Rezident maqomi</span> uchun ariza berilmoqda · Q4 2026 kogorta · Google Play Store ishga tushirishga tayyor · <span class="text-emerald-400 font-mono">TargetSdk 36</span></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       LIGHTBOX GALLERY MODAL (14 VISUAL ASSETS)
+       ═════════════════════════════════════════════════════════════ -->
+  <div id="galleryModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-2 sm:p-4 bg-slate-950/92 backdrop-blur-2xl transition-all duration-200">
+    <div class="relative w-full max-w-5xl h-full max-h-[92vh] flex flex-col glass-em rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl" style="box-shadow:0 25px 60px -15px rgba(0,0,0,.9), 0 0 50px rgba(16,185,129,.15)">
+      
+      <!-- Modal Top Header -->
+      <div class="flex items-center justify-between px-5 py-3 border-b border-slate-800/80 bg-slate-950/70 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+            <i data-lucide="smartphone" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-white tracking-wide">Tracker Jonli Ilova Ekranlari</span>
+              <span id="galleryCatBadge" class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">Dashboard</span>
+            </div>
+            <div class="text-[10px] font-mono text-slate-400">Haqiqiy Android Qurilmasidan Olingan Ekran Rasmlari</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="text-xs font-mono text-slate-400">
+            <span id="galleryCurrentIndex" class="text-emerald-400 font-bold text-sm">01</span> / <span id="galleryTotalCount">14</span>
+          </div>
+          <button onclick="closeGallery()" class="w-8 h-8 rounded-xl glass hover:bg-rose-500/20 hover:border-rose-500/40 text-slate-400 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Yopish (Esc)">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Main Stage (Prev + Phone Mockup + Details + Next) -->
+      <div class="flex-1 min-h-0 flex items-center justify-between px-3 sm:px-6 py-3 gap-4 overflow-hidden">
+        <!-- Prev Button -->
+        <button onclick="prevGalleryImg()" class="w-10 h-10 rounded-2xl glass hover:bg-emerald-500/20 hover:border-emerald-500/40 text-slate-300 hover:text-white flex items-center justify-center transition-all shrink-0 cursor-pointer active:scale-95" title="Oldingi (←)">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Center: Phone Showcase -->
+        <div class="flex-1 h-full max-h-[58vh] flex items-center justify-center">
+          <div class="h-full aspect-[9/19.5] max-h-[540px] rounded-[34px] p-2 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 border-2 border-slate-600 shadow-2xl relative flex flex-col overflow-hidden">
+            <!-- Dynamic Island / Speaker notch -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-slate-950 rounded-full z-20 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-slate-900 border border-slate-800"></div>
+            </div>
+            <!-- Screen Content -->
+            <div class="w-full h-full rounded-[26px] overflow-hidden bg-slate-950 relative flex items-center justify-center">
+              <img id="galleryMainImg" src="Screenshot_20260929_111151_Tracker.jpg" alt="Jonli Ekran" class="w-full h-full object-contain">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Detail Info Card -->
+        <div class="hidden md:flex flex-col justify-between w-80 max-h-[58vh] glass p-5 rounded-3xl space-y-3 shrink-0 border border-slate-800/80">
+          <div class="space-y-2.5">
+            <div class="sl text-emerald-400 text-[10px]" id="galleryDetailSubtitle">Ekran Tahlili</div>
+            <h3 id="galleryTitle" class="text-base font-bold text-white leading-snug">Bosh Sahifa & Gamifikatsiya Paneli</h3>
+            <p id="galleryDesc" class="text-xs text-slate-300 leading-relaxed">
+              Asadbek, LVL 3, 755 tanga, HP 100, haftalik 7 kunlik barqarorlik, kunlik vazifalar va bugungi progress.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-slate-800/80">
+            <div class="flex items-center justify-between text-[10px] font-mono text-slate-500">
+              <span>Navigatsiya:</span>
+              <span class="text-slate-400">← / → tugmalari</span>
+            </div>
+            <div class="flex items-center justify-between text-[10px] font-mono text-slate-500">
+              <span>Yopish:</span>
+              <span class="text-slate-400">Esc yoki X</span>
+            </div>
+            <button onclick="nextGalleryImg()" class="w-full py-2 px-3 rounded-xl grad-em text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-all cursor-pointer">
+              <span>Keyingi Ekran</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <button onclick="nextGalleryImg()" class="w-10 h-10 rounded-2xl glass hover:bg-emerald-500/20 hover:border-emerald-500/40 text-slate-300 hover:text-white flex items-center justify-center transition-all shrink-0 cursor-pointer active:scale-95" title="Keyingi (→)">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Thumbnail Strip (All 14 visual assets) -->
+      <div class="px-4 py-2 border-t border-slate-800/80 bg-slate-950/70 overflow-x-auto flex items-center gap-2 shrink-0" id="galleryThumbnailsStrip">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 border-t border-slate-800/60" style="background:rgba(5,8,17,.88);backdrop-filter:blur(24px);">
+    <div class="hidden sm:flex items-center gap-2 text-[10px] font-mono text-slate-600">
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-500">←</kbd>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-500">→</kbd>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-500">Bo'sh joy</kbd>
+      <span class="ml-1">Navigatsiya</span>
+      <span class="mx-2 text-slate-800">·</span>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-500">F</kbd>
+      <span>To'liq ekran</span>
+      <span class="mx-2 text-slate-800">·</span>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-500">G</kbd>
+      <span>Galereya</span>
+    </div>
+    <div class="flex items-center gap-1.5" id="dotsContainer"></div>
+    <div class="flex items-center gap-2">
+      <button onclick="prevSlide()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl glass text-slate-300 hover:text-white hover:border-slate-700 transition-all active:scale-95 text-xs font-mono">
+        <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline">Oldingi</span>
+      </button>
+      <button onclick="nextSlide()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl grad-em text-slate-950 font-bold hover:opacity-90 transition-all active:scale-95 text-xs shadow-lg" style="box-shadow:0 4px 14px rgba(16,185,129,.3)">
+        <span class="hidden sm:inline">Keyingi</span>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // ═══ SLIDE PRESENTATION ENGINE ═══
+    let cur = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const titleEl = document.getElementById('slideTitle');
+    const dots = document.getElementById('dotsContainer');
+    const bar = document.getElementById('progressBar');
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = `dot ${i === 0 ? 'a' : 'i'}`;
+      d.setAttribute('aria-label', `Slide ${i+1}`);
+      d.onclick = () => goTo(i);
+      dots.appendChild(d);
+    });
+
+    function pad(n) { return String(n).padStart(2,'0'); }
+
+    function update() {
+      slides.forEach((s,i) => { s.classList.toggle('active', i === cur); });
+      counter.textContent = `${pad(cur+1)} / ${pad(total)}`;
+      titleEl.textContent = slides[cur].dataset.title || '';
+      bar.style.width = ((cur+1)/total*100) + '%';
+      Array.from(dots.children).forEach((d,i) => { d.className = `dot ${i===cur?'a':'i'}`; });
+      lucide.createIcons();
+    }
+
+    function nextSlide() { if (cur < total-1) { cur++; update(); } }
+    function prevSlide() { if (cur > 0) { cur--; update(); } }
+    function goTo(i) { cur = i; update(); }
+
+    // ═══ 14 TA JONLI EKSTRIMAL VIZUAL ASSET MA'LUMOTLAR BAZASI ═══
+    const galleryData = [
+      {
+        src: 'Code_Generated_Image.png',
+        title: "Tracker Rasmiy Logotipi & Brand Belgisi",
+        cat: "Brending",
+        desc: "Yashil doira ichidagi neon chaqmoq — 0ms tezkorlik, o'zgarmas intizom va uzluksiz energiya ramzi."
+      },
+      {
+        src: 'Screenshot_20260929_111151_Tracker.jpg',
+        title: "Bosh Ekran: XP, Tanga & Kunlik Vazifalar",
+        cat: "Dashboard",
+        desc: "Asadbek (Lv.3), 755 tanga, 100 HP, haftalik 7 kunlik barqarorlik, kunlik vazifalar va bugungi progress."
+      },
+      {
+        src: 'Screenshot_20260929_111202_Tracker.jpg',
+        title: "0ms Optimistik Vazifalar & Kunlik Jurnal",
+        cat: "Optimistik UI",
+        desc: "Bir zumda bajariluvchi odatlar (+5 XP, +1 Tanga) va kunlik kayfiyat/mulohaza jurnali."
+      },
+      {
+        src: 'Screenshot_20260929_111207_Tracker.jpg',
+        title: "7 Kunlik Streak & Odatlar Do'koni Banners",
+        cat: "Streak va Do'kon",
+        desc: "Haftalik barqarorlik kalendari, streak himoyasi va 'Odatlar do'koniga xush kelibsiz' taklifi."
+      },
+      {
+        src: 'Screenshot_20260929_111211_Tracker.jpg',
+        title: "Odatlar Boshqaruvi & 24 Soatlik Tartib",
+        cat: "Odatlar Tizimi",
+        desc: "Rivojlantiruvchi odatlar (9 ta), 24 soatlik kun tartibi va vaqtli eslatmalar zanjiri."
+      },
+      {
+        src: 'Screenshot_20260929_111216_Tracker.jpg',
+        title: "Jamoa Mas'uliyati: 'Kengash 👑' Guruhi",
+        cat: "Guruh & Ijtimoiy",
+        desc: "1/20 a'zo, Bugungi progress 65%, Jamoa kodi J90BBZ va 3-yurakli umumiy jamoa HP tizimi."
+      },
+      {
+        src: 'Screenshot_20260929_111220_Tracker.jpg',
+        title: "Health Connect: Intizom, Uyqu & Qadamlar",
+        cat: "Salomatlik & Tahlil",
+        desc: "80% Intizom ko'rsatkichi, 124 soat umumiy uyqu, 173,320 qadam — nativ Android Health Connect integratsiyasi."
+      },
+      {
+        src: 'Screenshot_20260929_111225_Tracker.jpg',
+        title: "Haftalik Natijalar & Taqqoslash Diagrammasi",
+        cat: "Grafik Tahlil",
+        desc: "Bu 7 kun vs Oldingi 7 kun bajarilish grafigi, o'sish dinamikasi va kunlar bo'yicha foizlar."
+      },
+      {
+        src: 'Screenshot_20260929_111231_Tracker.jpg',
+        title: "AI Murabbiy & 90 Kunlik Faollik Matritsasi",
+        cat: "AI va Tahlil",
+        desc: "AI murabbiy tahlili (200 tanga), 90 kunlik Github-style faollik xaritasi va 30 kunlik trend chiziqlari."
+      },
+      {
+        src: 'Screenshot_20260929_111239_Tracker.jpg',
+        title: "Foydalanuvchi Profili: Asadbek O'rolov (@vectorro)",
+        cat: "Profil & Reyting",
+        desc: "Neon sher avatari, Lv.3 Qat'iyatli, 755 tanga, 5/7 yutuq nishonlari va shaxsiy hisob boshqaruvi."
+      },
+      {
+        src: 'Screenshot_20260929_111243_Tracker.jpg',
+        title: "Hisob Sozlamalari, Telegram & FAQ",
+        cat: "Sozlamalar",
+        desc: "Hisob ma'lumotlari, Telegram qo'llab-quvvatlash guruhi, ko'p so'raladigan savollar va chiqish."
+      },
+      {
+        src: 'Screenshot_20260929_111253_Tracker.jpg',
+        title: "Mahalliy Til (🇺🇿 🇷🇺 🇬🇧) & Tungi Rejim",
+        cat: "Lokalizatsiya",
+        desc: "O'zbekcha to'liq nativ interfeys, rus va ingliz tillari, AMOLED qora mavzu va eslatmalar vaqti."
+      },
+      {
+        src: 'Screenshot_20260929_111259_Tracker.jpg',
+        title: "RPG Yutuq Nishonlari: Lv.3 Qat'iyatli",
+        cat: "Gamifikatsiya",
+        desc: "Birinchi Qadam, Barqarorlik (7 kun), Olovli (14 kun), Odat Ustasi (30 kun) — ochilgan va qulflangan nishonlar."
+      },
+      {
+        src: 'Screenshot_20260929_111306_Tracker.jpg',
+        title: "Tanga Do'koni: Streak Qutqaruvchi & Qalqonlar",
+        cat: "Monetizatsiya",
+        desc: "755 tanga balansi, Streak Qutqaruvchi (250🪙), Streak Qalqoni (10🪙) va Click/Payme tanga xaridi."
+      }
+    ];
+
+    let galleryIdx = 0;
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryMainImg = document.getElementById('galleryMainImg');
+    const galleryTitle = document.getElementById('galleryTitle');
+    const galleryDesc = document.getElementById('galleryDesc');
+    const galleryCatBadge = document.getElementById('galleryCatBadge');
+    const galleryCurrentIndex = document.getElementById('galleryCurrentIndex');
+    const galleryTotalCount = document.getElementById('galleryTotalCount');
+    const galleryStrip = document.getElementById('galleryThumbnailsStrip');
+
+    galleryTotalCount.textContent = pad(galleryData.length);
+
+    // Pastki kichik rasmlar lentasini yaratish
+    galleryData.forEach((item, idx) => {
+      const btn = document.createElement('button');
+      btn.className = `shrink-0 w-12 h-10 rounded-lg overflow-hidden border transition-all cursor-pointer ${idx === 0 ? 'border-emerald-400 ring-2 ring-emerald-500/40 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-600'}`;
+      btn.id = `thumbBtn_${idx}`;
+      btn.onclick = () => setGalleryImg(idx);
+      btn.innerHTML = `<img src="${item.src}" alt="${item.title}" class="w-full h-full object-cover">`;
+      galleryStrip.appendChild(btn);
+    });
+
+    function setGalleryImg(idx) {
+      if (idx < 0) idx = galleryData.length - 1;
+      if (idx >= galleryData.length) idx = 0;
+      galleryIdx = idx;
+
+      const item = galleryData[idx];
+      galleryMainImg.src = item.src;
+      galleryTitle.textContent = item.title;
+      galleryDesc.textContent = item.desc;
+      galleryCatBadge.textContent = item.cat;
+      galleryCurrentIndex.textContent = pad(idx + 1);
+
+      // Pastki lentani yangilash
+      galleryData.forEach((_, i) => {
+        const btn = document.getElementById(`thumbBtn_${i}`);
+        if (!btn) return;
+        if (i === idx) {
+          btn.className = 'shrink-0 w-12 h-10 rounded-lg overflow-hidden border border-emerald-400 ring-2 ring-emerald-500/40 scale-105 transition-all cursor-pointer';
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          btn.className = 'shrink-0 w-12 h-10 rounded-lg overflow-hidden border border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-600 transition-all cursor-pointer';
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function openGallery(idx = 0) {
+      setGalleryImg(idx);
+      galleryModal.classList.remove('hidden');
+      galleryModal.classList.add('flex');
+    }
+
+    function closeGallery() {
+      galleryModal.classList.add('hidden');
+      galleryModal.classList.remove('flex');
+    }
+
+    function nextGalleryImg() { setGalleryImg(galleryIdx + 1); }
+    function prevGalleryImg() { setGalleryImg(galleryIdx - 1); }
+
+    // Modal orqa foniga bosganda yopish
+    galleryModal.addEventListener('click', e => {
+      if (e.target === galleryModal) closeGallery();
+    });
+
+    // ═══ KLAVIATURA BOSHQARUVI ═══
+    window.addEventListener('keydown', e => {
+      const isGalleryOpen = !galleryModal.classList.contains('hidden');
+
+      if (e.key === 'Escape') {
+        if (isGalleryOpen) { closeGallery(); return; }
+      }
+
+      if (e.key.toLowerCase() === 'g') {
+        e.preventDefault();
+        isGalleryOpen ? closeGallery() : openGallery(galleryIdx);
+        return;
+      }
+
+      if (isGalleryOpen) {
+        if (['ArrowRight', ' '].includes(e.key)) { e.preventDefault(); nextGalleryImg(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); prevGalleryImg(); }
+        return;
+      }
+
+      // Slaydlar boshqaruvi
+      if (['ArrowRight',' '].includes(e.key)) { e.preventDefault(); nextSlide(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+      else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+      else if (e.key === 'End') { e.preventDefault(); goTo(total-1); }
+      else if (e.key.toLowerCase() === 'f') toggleFs();
+    });
+
+    let tx = null;
+    document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      if (tx === null) return;
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) {
+        const isGalleryOpen = !galleryModal.classList.contains('hidden');
+        if (isGalleryOpen) {
+          dx < 0 ? nextGalleryImg() : prevGalleryImg();
+        } else {
+          dx < 0 ? nextSlide() : prevSlide();
+        }
+      }
+      tx = null;
+    }, { passive: true });
+
+    let wheelLock = false;
+    window.addEventListener('wheel', e => {
+      const isGalleryOpen = !galleryModal.classList.contains('hidden');
+      if (isGalleryOpen) return; // Galereya ichida lentalarni erkin scroll qilish
+      e.preventDefault();
+      if (wheelLock) return;
+      wheelLock = true;
+      if (e.deltaY > 0) nextSlide();
+      else if (e.deltaY < 0) prevSlide();
+      setTimeout(() => { wheelLock = false; }, 600);
+    }, { passive: false });
+
+    function toggleFs() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(e => console.warn(e));
+      } else { document.exitFullscreen(); }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      const isFs = !!document.fullscreenElement;
+      document.getElementById('fsMax').style.display = isFs ? 'none' : 'block';
+      document.getElementById('fsMin').style.display = isFs ? 'block' : 'none';
+      lucide.createIcons();
+      setTimeout(fitSlides, 160);
+    });
+
+    // ── Auto-fit: slayd kontentni viewport ga moslashtirish ──
+    function fitSlides() {
+      const main = document.querySelector('main');
+      if (!main) return;
+      const availH = main.clientHeight;
+      const availW = main.clientWidth;
+      const designH = 650;
+      const designW = 1140;
+      const scale = Math.min(availH / designH, availW / designW, 1);
+      document.querySelectorAll('.slide > div').forEach(el => {
+        el.style.zoom = scale < 0.98 ? scale.toFixed(4) : '1';
+      });
+    }
+
+    window.addEventListener('resize', fitSlides);
+
+    update();
+    fitSlides();
+  </script>
+</body>
+</html>
